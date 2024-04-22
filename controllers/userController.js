@@ -117,6 +117,7 @@ module.exports.postRegister = (req, res) => {
   // Register Authentication
   const { name, email, password } = req.body;
   let errors = [];
+  // let success = [];
   if (!name || !email || !password) {
     errors.push({ msg: "Please fill out all required fields" });
   }
@@ -132,6 +133,7 @@ module.exports.postRegister = (req, res) => {
       title: "Register",
       styles: myCss,
       errors,
+      // success,
       name,
       email,
       password,
@@ -161,8 +163,16 @@ module.exports.postRegister = (req, res) => {
       newUser
         .save()
         .then((user) => {
-          //req.flash("success_msg", "You are now registered and can log in");
-          res.redirect("/user/login");
+          //  req.flash("success_msg", "You are now registered and can log in");
+
+          errors.push({ msg: "You are now registered and can log in" });
+          res.status(200).render("login", {
+            title: "Login",
+            styles: myCss,
+            errors,
+          }); 
+
+          // res.redirect("/user/login");
         })
         .catch((err) => {
           console.log(err);
