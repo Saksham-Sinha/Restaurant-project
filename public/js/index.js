@@ -44,3 +44,13 @@ profileBtn.addEventListener("click", toggleProfileDropdown);
 
 // Adding Click Event on Document to Close Profile Dropdown
 document.addEventListener("click", closeProfileDropdown);
+
+// Chatbot Toggle
+  document.getElementById('logo').addEventListener('click', function() {
+    var chatbotContainer = document.getElementById('chatbot-container');
+    if (chatbotContainer.style.display === 'none') {
+      chatbotContainer.style.display = 'block';
+    } else {
+      chatbotContainer.style.display = 'none';
+    }
+  });
